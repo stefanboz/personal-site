@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { createClient } from 'contentful';
 import { createClient as createManagementClient } from 'contentful-management';
 
