@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 
-import { datetime } from '@/util/datetime';
+import { datetime } from 'src/lib/datetime';
 
 const classes = {
   wrapper: 'mt-16 blog-content',

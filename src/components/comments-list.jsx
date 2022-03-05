@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { createMd5Hash } from '@/util/helpers';
-import { datetime } from '@/util/datetime';
+import { datetime } from 'src/lib/datetime';
 
 const Comments = ({ comments }) => {
   return (
