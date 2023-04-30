@@ -30,7 +30,7 @@ const Blog = () => {
 
 export default Blog;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery('headerData', getSiteHeaderData);

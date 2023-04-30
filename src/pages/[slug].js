@@ -69,14 +69,18 @@ export default function Post() {
   );
 }
 
-export async function getServerSideProps({ req }) {
-  const { url } = req;
+export async function getStaticPaths() {
+  const allBlogPosts = await getBlogPosts();
 
-  let slug = url;
+  const paths = allBlogPosts.posts.map(post => ({
+    params: { slug: post.fields.slug },
+  }));
 
-  if (url.charAt(0) === '/') {
-    slug = url.slice(1);
-  }
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  const { slug } = params;
 
   const queryClient = new QueryClient();
 
@@ -85,7 +89,7 @@ export async function getServerSideProps({ req }) {
   await queryClient.prefetchQuery('blogPosts', getBlogPosts);
 
   await queryClient.prefetchQuery(['singlePost', slug], () =>
-    getSingleBlogPost(url)
+    getSingleBlogPost(slug)
   );
 
   return {
